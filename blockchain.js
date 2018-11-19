@@ -15,10 +15,10 @@ const Block = require('./simpleChain');
 
 class Blockchain{
   constructor(){
-     this.getBlockHeight().then((height) => {
-if (height < 0){
-                this.addBlock(new Block.Block("First block in the chain - Genesis block"));
-}})
+        this.getBlockHeight().then((height) => {
+        if (height < 0){
+            this.addBlock(new Block.Block("First block in the chain - Genesis block"));
+        }})
   }
     
   // Get block height
@@ -63,6 +63,8 @@ if (height < 0){
                 // Sending this new block to the persistent method
                 self.addDataToLevelDB(JSON.stringify(newBlock).toString());
                 //console.log(logPrefix + 'Block  == ' + JSON.stringify(newBlock).toString());
+                resolve(newBlock);
+
             }).catch(e => console.error(logPrefix + 'error getBlock ======= ' + e));
         }else{
                 // UTC timestamp
@@ -73,11 +75,11 @@ if (height < 0){
                 // Sending this new block to the persistent method
                 self.addDataToLevelDB(JSON.stringify(newBlock).toString());
                 //console.log(logPrefix + 'Block  == ' + JSON.stringify(newBlock).toString());
-         
+                resolve(newBlock);
+
         }
      }).catch(e => console.error(logPrefix + 'error getBlockHeight ======= ' + e));
-                    resolve(true);
-        })
+    })
   }
 // Add data to levelDB with key/value pair
 addLevelDBData(key,value){
@@ -93,7 +95,7 @@ getLevelDBData(key){
         return new Promise((resolve, reject) => {
 
             db.get(key, function(err, value) {
-                if (err) return console.log('Not found!', err);
+                if (err) reject(err);
                 resolve(value);
             });})
 }
@@ -196,6 +198,7 @@ addDataToLevelDB(value) {
     }
 }
 
+/*
 let blockchain = new Blockchain();
 
 (function theLoop (i) {
@@ -204,8 +207,14 @@ let blockchain = new Blockchain();
         blockchain.addBlock(blockTest).then((result) => {
             console.log(result);
             i++;
-            if (i < 10) theLoop(i);
+            if (i < 3) theLoop(i);
         });
-    }, 10000);
+    }, 1000);
   })(0);
+  
+*/
+
+module.exports = {
+  Blockchain : Blockchain
+}
 
