@@ -22,9 +22,9 @@ Installing Node and NPM is pretty straightforward using the installer package av
 ## Endpoint documentation
 
 ### Get Block By Index
-*URL* : `http://localhost/block/:index`
-*Method* : `GET`
-*URL Params* : `**Required** : index=[integer]`
+*URL* : `http://localhost/block/:index`.
+*Method* : `GET`.
+*URL Params* : `Required : index=[integer]`.
 *Success Response* : `{
     "status": 200,
     "response": {
@@ -34,20 +34,20 @@ Installing Node and NPM is pretty straightforward using the installer package av
         "time": "1542658139",
         "hash": "4ccfe103c3c67aa3985ac7318a1a32e8defd4ef6696ecf7fd49b0fcc77e15589"
     }
-}`
+}`.
 
 
 ### Post Block 
-*URL* : `http://localhost/block/`
-*Method* : `POST`
-*Data Params* : `*{"body": "Testing block with test string data"}`
+*URL* : `http://localhost/block/`.
+*Method* : `POST`.
+*Data Params* : `{"body": "Testing block with test string data"}`.
 *Success Response* : `{
     "body": "Testing block with test string data",
     "height": 9,
     "previousBlockHash": "d8941e8ca88ad11ed555302a7eb65c8dcbeed91559ac769786f017f8517a2950",
     "time": "1542658139",
     "hash": "4ccfe103c3c67aa3985ac7318a1a32e8defd4ef6696ecf7fd49b0fcc77e15589"
-}`
+}`.
 
 
 ## Authors
