@@ -37,17 +37,20 @@ class BlockController {
      */
     postNewBlock() {
         this.app.post("/block", (req, res) => {
-            let body = req.body;
+            let body = req.body.body;
             console.log(body);
-            if (Object.keys(body).length === 0 && body.constructor === Object){
+            if (body == undefined){
                 res.send({"status": 400, "response":"Block Needs Data In The Body!"});
+
             }else{
                 let blockchain = new Blockchain.Blockchain ;
+                body = {"body": body};
                 blockchain.addBlock(body).then((result) => {
-                    console.log(result);
-                    res.json(result);
-                    
+                console.log(result);
+                res.json(result);
                 });
+   
+  
             }
 
         });

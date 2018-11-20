@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 Installing Node and NPM is pretty straightforward using the installer package available from the (Node.js® web site)[https://nodejs.org/en/].
 
+## Node.js framework
+This app uses NodeJS , ExpressJS and Body-parser middleware .
 
 ## Steps to follow
 
@@ -49,6 +51,3 @@ Installing Node and NPM is pretty straightforward using the installer package av
     "hash": "4ccfe103c3c67aa3985ac7318a1a32e8defd4ef6696ecf7fd49b0fcc77e15589"
 }`.
 
-
-## Authors
-* **Fahad Al-Osaimi** - *Senior Technical Consultant* - [FahadOs](https://github.com/FahadOs)
