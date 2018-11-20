@@ -1,5 +1,6 @@
 const SHA256 = require('crypto-js/sha256');
 const Blockchain = require('./blockchain.js');
+let blockchain = new Blockchain.Blockchain ;
 
 /**
  * Controller Definition to encapsulate routes to work with blocks
@@ -23,11 +24,10 @@ class BlockController {
         this.app.get("/block/:index", (req, res) => {
             let height = req.params.index; 
             console.log(' Get block requested for index = ' + height );
-            let blockchain = new Blockchain.Blockchain ;
             blockchain.getBlock(height).then((block) => {
                 console.log(' Selected block for index == ' + height + ' ==== ' + block);
-                res.send({"status": 200, "response": JSON.parse(block)});
-            }).catch(e => res.send({"status": 400, "response":"No Data Availble For Index : "+height}));
+                res.send({"response": JSON.parse(block)});
+            }).catch(e => res.status(400).send({ "response":"No Data Availble For Index : "+height}));
 
         });
     }
@@ -40,7 +40,7 @@ class BlockController {
             let body = req.body.body;
             console.log(body);
             if (body == undefined){
-                res.send({"status": 400, "response":"Block Needs Data In The Body!"});
+                res.status(400).send({ "response":"Block Needs Data In The Body!"});
 
             }else{
                 let blockchain = new Blockchain.Blockchain ;
